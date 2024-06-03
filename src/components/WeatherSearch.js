@@ -1,5 +1,6 @@
 import { Button, StyleSheet, View } from 'react-native';
 import CustomTextInput from './CustomTextInput';
+import { useState } from 'react';
 
 const styles = StyleSheet.create({
   buttonWrapper: {
@@ -7,12 +8,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const WeatherSearch = () => {
+const WeatherSearch = ({ searchWeather }) => {
+  const [location, setLocation] = useState('');
+
   return (
     <View>
-      <CustomTextInput placeholder="Search the wheater of your city" numberOfLines={1} />
+      <CustomTextInput placeholder="Search the wheater of your city" numberOfLines={1} text={location} onChange={setLocation} />
       <View styles={styles.buttonWrapper}>
-        <Button title="Search" onPress={() => {}} />
+        <Button title="Search" onPress={() => searchWeather(location)} />
       </View>
     </View>
   );
